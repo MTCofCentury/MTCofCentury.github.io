@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tiancheng-private-votes",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": true,
+  "vars": { "ALLOWED_ORIGIN": "https://mtcofcentury.github.io" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "tiancheng-votes",
+      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+    }
+  ]
+}
