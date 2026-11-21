@@ -1,0 +1,175 @@
+/* The opening black hole retains its original styling. */
+.solar-journey{overflow-x:clip}
+.solar-journey{--paper:#090a0f;--ink:#eeeef2;--muted:#a4a8b7;--line:rgba(255,255,255,.12);--orange:#dfb37e;background:#090a0f;color:var(--ink);position:relative;isolation:isolate;margin-top:0;padding-bottom:1px;color-scheme:dark}
+.solar-journey::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(1px 1px at 21% 17%,#cbd5f655 50%,transparent),radial-gradient(1px 1px at 78% 63%,#cbd5f644 50%,transparent);background-size:217px 263px,331px 389px}
+.solar-atlas{padding-top:90px;padding-bottom:70px}
+.solar-atlas>.eyebrow{color:#dfb37e;font-size:12px;letter-spacing:.22em}
+.atlas-heading{display:flex;align-items:center;justify-content:space-between;gap:32px}
+.atlas-heading h2{font-size:clamp(32px,4vw,58px);margin:12px 0}
+.atlas-heading p{font-size:14px;color:var(--muted);line-height:1.9}
+.solar-map{position:relative;aspect-ratio:1000/640;width:100%;max-width:1100px;margin:24px auto 0}
+.orbit-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.orbit-lines ellipse{fill:none;stroke:rgba(255,255,255,.12);stroke-width:1;vector-effect:non-scaling-stroke;pointer-events:stroke;cursor:pointer;transition:stroke .35s,stroke-width .35s}
+.orbit-lines ellipse.is-highlighted{stroke:#d8c4a9aa;stroke-width:2}
+.world-button{position:absolute;left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%);padding:0;background:none;border:0;color:#eeeef2;display:grid;place-items:center;z-index:2}
+.planet-sphere{display:block;width:var(--size);height:var(--size);border-radius:50%;background:radial-gradient(circle at 30% 24%,#ffffff8a 0,transparent 32%),radial-gradient(circle at 28% 28%,var(--planet-color) 0,var(--planet-color) 18%,#151824 76%,#070810 100%);box-shadow:inset -4px -3px 10px #0006,0 0 18px color-mix(in srgb,var(--planet-color) 18%,transparent);transition:transform .5s,box-shadow .5s;position:relative}
+.world-sun .planet-sphere{background:radial-gradient(circle at 35% 32%,#fff4c3,#ffc164 38%,#dd6c29 77%,#753414);box-shadow:0 0 30px #ffb74c55,0 0 80px #f17d2825}
+.world-saturn .planet-sphere::after{content:"";position:absolute;inset:28% -48%;border:5px double #cfbd9477;border-radius:50%;transform:rotate(-28deg);box-shadow:0 0 0 2px #cfbd9420}
+.world-earth .planet-sphere{background:radial-gradient(ellipse at 32% 37%,#b8c4a4aa,transparent 28%),radial-gradient(ellipse at 55% 60%,#709b82aa,transparent 24%),radial-gradient(circle at 28% 26%,#bedde5,#357eaa 38%,#080e21 85%)}
+.world-jupiter .planet-sphere{background:radial-gradient(circle at 28% 24%,#ffffff55,transparent 45%),radial-gradient(circle at 75% 65%,#050816dd,transparent 70%),repeating-linear-gradient(174deg,#bca391 0 12%,#8e6c59 13% 18%,#d2b79e 20% 30%)}
+.world-label{position:absolute;top:calc(100% + 9px);font-size:12px;letter-spacing:.08em;white-space:nowrap;color:#aeb2c2;transition:opacity .2s}
+.world-card{position:absolute;left:calc(100% + 16px);bottom:8px;min-width:210px;max-width:270px;padding:20px;text-align:left;background:rgba(22,26,39,.86);border:1px solid #ffffff26;border-radius:12px;backdrop-filter:blur(18px);box-shadow:0 12px 50px #0005;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .3s,transform .3s,visibility .3s;pointer-events:none}
+.world-card small{display:block;font-size:11px;letter-spacing:.15em;color:var(--planet-color)}
+.world-card strong{display:block;font-family:var(--serif);font-weight:400;font-size:26px;margin:7px 0}
+.world-card>span{display:block;font-size:14px;line-height:1.7;color:#bac0d1}
+.card-left .world-card{left:auto;right:calc(100% + 16px)}
+.card-below .world-card{bottom:auto;top:calc(100% + 12px)}
+.world-button.is-highlighted{z-index:5}
+.world-button.is-highlighted .world-card{opacity:1;visibility:visible;transform:translateY(0)}
+.world-button.is-highlighted .planet-sphere,.world-button.is-selected .planet-sphere{transform:scale(1.3);box-shadow:0 0 25px color-mix(in srgb,var(--planet-color) 45%,transparent)}
+.world-button.is-highlighted .world-label{opacity:0}
+.motion-toggle{display:block;margin:20px auto 0;background:none;border:1px solid #ffffff26;border-radius:30px;padding:10px 22px;color:#bec2d1;font-size:14px}
+.journey-progress{position:fixed;bottom:20px;left:50%;transform:translate(-50%,15px);z-index:20;display:flex;align-items:center;gap:20px;width:min(480px,90vw);padding:13px 22px;border:1px solid #ffffff24;border-radius:40px;background:#121622d9;backdrop-filter:blur(16px);font-size:11px;letter-spacing:.12em;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s}
+.journey-progress.is-visible{opacity:1;transform:translate(-50%,0)}
+.journey-location{min-width:90px}.journey-track{flex:1;height:1px;background:#ffffff25}.journey-track i{display:block;width:var(--progress,0%);height:1px;background:#dfb37e;transition:width .7s}
+.solar-journey .planet-section{position:relative;isolation:isolate;min-height:90vh;align-content:center;padding-top:110px;padding-bottom:110px;border-top:1px solid var(--line);scroll-margin-top:0}
+.planet-section::before{content:"";position:absolute;z-index:-1;pointer-events:none;right:0;top:100px;width:min(56vw,640px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 22%,color-mix(in srgb,var(--planet-color) 65%,#fff) 0,var(--planet-color) 20%,#151824 65%,#090a0f 80%);opacity:.22;box-shadow:0 0 100px color-mix(in srgb,var(--planet-color) 12%,transparent);transition:opacity 1s,transform 1s;transform:translateY(35px)}
+.planet-section.is-current::before{opacity:.35;transform:translateY(0)}
+.planet-section::after{content:attr(data-world);position:absolute;top:36px;right:0;color:var(--planet-color);font-size:12px;letter-spacing:.18em}
+.solar-journey .philosophy{background:transparent}
+.solar-journey .philosophy::before{right:6%;top:180px;position:sticky;display:block;float:right;width:45vw;margin-bottom:-45vw}
+.solar-journey .philosophy::after{right:6%}
+.solar-journey .zhuangzi-gallery{padding-top:0;padding-bottom:0}
+.solar-journey .biography p,.solar-journey .star-copy p,.solar-journey .future p{font-size:16px}
+.solar-journey .mentor-note,.solar-journey .wisdom-translation h3{color:#bcc3c9}
+.solar-journey .wisdom-row,.solar-journey .mentor-note,.solar-journey .wisdom-art img{border-color:var(--line)}
+.solar-journey .section-marker>span,.solar-journey .eyebrow{font-size:12px}
+.solar-journey .source-link,.solar-journey .text-link,.solar-journey .quote-transcript,.solar-journey .translation-note{font-size:14px}
+.solar-journey .coordinates{font-size:14px}.solar-journey .coordinates small{font-size:12px}
+.solar-journey .portrait-tag{color:#eee}.solar-journey .elements span{font-size:10px}
+.solar-journey .vote-form>input{background:#171a24;color:#eee}
+.solar-journey .world-saturn::before{outline:22px double #c2ad7733;outline-offset:34px;transform:scaleY(.8) rotate(-25deg)}
+.unwritten h2{font-size:clamp(40px,6vw,80px);color:#d7dcea}.unwritten-content{min-height:25vh}
+.guestbook{max-width:680px;margin:65px auto 0;padding:32px;border:1px solid var(--line);border-radius:16px;background:#121522b3;backdrop-filter:blur(12px)}
+.guestbook h3{font-family:var(--serif);font-size:28px;font-weight:400;margin:12px 0 26px}
+.guestbook label{display:block;font-size:14px;margin:16px 0 8px}.guestbook input:not([type=checkbox]),.guestbook textarea{width:100%;background:#090a0f88;border:1px solid #ffffff30;border-radius:6px;padding:12px;color:#eee;font:inherit;font-size:16px}.guestbook textarea{resize:vertical}
+.guestbook .guest-consent{display:flex;gap:10px;align-items:start}.guest-consent input{margin-top:6px}
+.guestbook button{padding:12px 24px;border:1px solid #d3b48b;background:#d3b48b;color:#101218;border-radius:30px;font-size:14px;margin-top:16px}.guestbook button:disabled{opacity:.45;cursor:not-allowed}
+#guestbook-status{font-size:14px;color:var(--muted)}
+@media(max-width:767px){
+ .solar-atlas{padding:60px 0 30px}.atlas-heading{display:block}.atlas-heading p{font-size:16px}
+ .solar-map{aspect-ratio:auto;margin:36px 0 0;padding-left:0}.orbit-lines,.motion-toggle{display:none}
+ .solar-map::before{content:"";position:absolute;left:28px;top:32px;bottom:45px;width:1px;background:#ffffff26}
+ .world-button{position:relative;left:auto!important;top:auto!important;transform:none;width:100%;height:auto;min-height:96px;display:grid;grid-template-columns:56px 1fr;gap:24px;text-align:left;padding:14px 0}
+ .planet-sphere{justify-self:center;max-width:42px;max-height:42px}.world-label{display:none}
+ .world-card,.card-left .world-card,.card-below .world-card{position:static;min-width:0;max-width:none;visibility:visible;opacity:1;transform:none;padding:8px 12px;background:transparent;border:1px solid transparent;box-shadow:none;backdrop-filter:none}
+ .world-card strong{font-size:23px;margin:2px 0}.world-card small{font-size:10px}.world-card>span{font-size:14px}
+ .world-button.is-highlighted .world-card,.world-button.is-selected .world-card{background:#ffffff08;border-color:#ffffff20}
+ .solar-journey .planet-section{padding-top:85px;padding-bottom:85px;min-height:80vh}
+ .solar-journey .section-grid{grid-template-columns:1fr;gap:26px}.solar-journey .portrait-block,.solar-journey .elements{grid-column:1}
+ .solar-journey .future{grid-template-columns:1fr;gap:30px}.solar-journey .future h2{font-size:36px}
+ .planet-section::before{width:76vw;top:130px}.solar-journey .philosophy::before{position:absolute;float:none;width:76vw;margin:0}
+ .guestbook{padding:22px;margin-top:40px}.journey-progress{gap:10px;padding:12px 18px;font-size:10px}.journey-location{min-width:80px}
+}
+/* Immersive planetary environments, kept separate from the orbital navigation. */
+.solar-journey .planet-section{
+ --muted:#d0d3db;--orange:#f0c99a;
+ --terrain-light:#67513a;--terrain-base:#24202b;
+ width:100%;max-width:none;
+ padding-left:max(6%,calc((100% - 1320px)/2));
+ padding-right:max(6%,calc((100% - 1320px)/2));
+ background:radial-gradient(ellipse at 90% 42%,var(--terrain-light),transparent 70%),linear-gradient(115deg,var(--terrain-base),#121724);
+ border-top:1px solid #ffffff24;
+}
+.solar-journey .planet-section::before{
+ position:absolute;display:block;float:none;margin:0;right:-5%;top:65px;
+ width:min(65vw,850px);aspect-ratio:1;outline:none;border-radius:50%;
+ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' opacity='.12' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"),var(--surface);opacity:.82;transform:rotate(var(--tilt,0deg));
+ mask-image:linear-gradient(90deg,transparent,#0009 35%,#000 65%);
+ box-shadow:inset -60px -35px 95px #050a1888,inset 4px 3px 14px #ffffff40,0 0 90px color-mix(in srgb,var(--planet-color) 28%,transparent);
+ transition:opacity 1.2s;
+}
+.solar-journey .planet-section.is-current::before{opacity:1;transform:rotate(var(--tilt,0deg))}
+.solar-journey .planet-section::after{right:6%;color:#f5e8d8;text-shadow:0 2px 12px #0008}
+.solar-journey .planet-section> :not(.section-planet-rings){text-shadow:0 2px 16px #080c1877}
+.solar-journey .biography,.solar-journey .star-copy,.solar-journey .future>div:first-child,.solar-journey .story-prose{position:relative}
+.solar-journey .biography::before,.solar-journey .star-copy::before,.solar-journey .future>div:first-child::before,.solar-journey .story-prose::before{content:"";position:absolute;inset:-22px;z-index:-1;border-radius:24px;background:linear-gradient(110deg,#1015216b,#10152138);backdrop-filter:blur(8px);pointer-events:none}
+.solar-journey .philosophy{padding-left:0;padding-right:0}
+.solar-journey .philosophy::before{top:180px}
+.solar-journey .mentor-note,.solar-journey .wisdom-translation h3{color:#e0e3e7}
+.solar-journey .planet-section.world-sun{
+ --terrain-light:#a96922;--terrain-base:#342014;
+ --surface:radial-gradient(ellipse at 30% 25%,#fff1b5aa,transparent 45%),repeating-radial-gradient(ellipse at 45% 60%,#ffca6233 0 2px,#f0781833 4px 7px,transparent 10px 16px),radial-gradient(circle at 40% 35%,#ffdf76,#ffae36 48%,#e9671c 80%);
+}
+.solar-journey .world-sun.planet-section::before{box-shadow:inset -30px -20px 80px #c65b2944,0 0 55px #ffb13c88,0 0 140px #f5a42d55,0 0 240px #f5a42d22}
+.solar-journey .planet-section.world-mercury{
+ --terrain-light:#77766f;--terrain-base:#30333a;
+ --surface:radial-gradient(circle at 31% 27%,#4a4c4b 0 5%,#adaaa0 5.5%,#777970 6.5%,transparent 8%),radial-gradient(circle at 61% 42%,#555852 0 9%,#c2beb0 9.5%,#7f8277 11%,transparent 13%),radial-gradient(circle at 42% 65%,#585c55 0 12%,#b1b2a6 12.5%,#767a70 14%,transparent 16%),radial-gradient(circle at 24% 53%,#555951 0 3%,#bdbdaf 3.5%,transparent 5%),radial-gradient(circle at 69% 73%,#585c54 0 4%,#bdbbad 4.5%,transparent 6%),repeating-radial-gradient(ellipse at 35% 37%,#a9a99a30 0 3px,transparent 5px 17px),linear-gradient(125deg,#c1c0af,#82867c 50%,#454c48);
+}
+.solar-journey .planet-section.world-venus{
+ --terrain-light:#aa8248;--terrain-base:#403022;--tilt:-16deg;
+ --surface:radial-gradient(ellipse at 25% 35%,#fff4cf88,transparent 48%),repeating-linear-gradient(168deg,#ead29d 0%,#b39058 8%,#e6cb91 12%,#f5dfad 17%,#c6a36c 23%,#e3c48b 29%);
+}
+.solar-journey .planet-section.world-earth{
+ --terrain-light:#287da1;--terrain-base:#122e46;--tilt:12deg;
+ --surface:radial-gradient(ellipse at 40% 8%,#eff9f3 0 6%,transparent 12%),radial-gradient(ellipse at 43% 44%,#779c75 0 7%,transparent 8%),radial-gradient(ellipse at 34% 30%,#92ad7f 0 12%,transparent 13%),radial-gradient(ellipse at 51% 62%,#638d69 0 10%,transparent 11%),radial-gradient(ellipse at 70% 26%,#a1b98b 0 16%,transparent 17%),repeating-linear-gradient(156deg,transparent 0 13%,#e9ffff40 15%,transparent 18% 29%),radial-gradient(circle at 30% 25%,#64bdd3,#246fa6 55%,#143a6c);
+}
+.solar-journey .planet-section.world-earth::before{box-shadow:inset -55px -35px 90px #05182c99,inset 5px 4px 18px #c8f7ffbb,0 0 32px #88d9f566,0 0 120px #208ccc33}
+.solar-journey .planet-section.world-mars{
+ --terrain-light:#9e4e36;--terrain-base:#3d2426;--tilt:-12deg;
+ --surface:radial-gradient(ellipse at 47% 4%,#e9d1b3 0 6%,transparent 12%),radial-gradient(ellipse at 56% 58%,#5a312c 0 2%,transparent 4%),radial-gradient(ellipse at 44% 55%,#68382b 0 3%,transparent 6%),radial-gradient(ellipse at 33% 51%,#793e2d 0 2%,transparent 5%),radial-gradient(circle at 27% 36%,#87432e 0 7%,#c68351 8%,transparent 10%),repeating-radial-gradient(ellipse at 25% 65%,#673f2a33 0 4px,transparent 6px 24px),linear-gradient(130deg,#d89a69,#b8603e 52%,#79372b);
+}
+.solar-journey .planet-section.world-jupiter{
+ --terrain-light:#94715c;--terrain-base:#3b2b2c;--tilt:8deg;
+ --surface:radial-gradient(ellipse at 66% 66%,#c08764 0 4%,#aa593d 4.5% 7%,#e2b28b 8% 10%,transparent 11%),radial-gradient(ellipse at 28% 23%,#fff0d255,transparent 50%),repeating-linear-gradient(178deg,#e6cfb4 0 8%,#b39077 9% 13%,#d8b798 14% 20%,#98664d 22% 27%,#e5cbb0 28% 34%,#b27b5b 36% 42%);
+}
+.solar-journey .planet-section.world-saturn{
+ --terrain-light:#887b56;--terrain-base:#302e2b;--tilt:-25deg;
+ --surface:radial-gradient(ellipse at 30% 20%,#fff1c755,transparent 50%),repeating-linear-gradient(176deg,#d8c69c 0 10%,#c1aa7f 12% 15%,#e5d6b0 17% 25%,#bdab85 27% 30%);
+}
+.solar-journey .world-saturn.planet-section::before{width:min(43vw,570px);right:8%;top:130px}
+.section-planet-rings{position:absolute;z-index:-1;pointer-events:none;right:-6%;top:230px;width:min(72vw,960px);height:min(24vw,320px);border-radius:50%;transform:rotate(-25deg);background:radial-gradient(ellipse,transparent 0 42%,#decba96b 43% 45%,transparent 46% 47%,#e9d7ad99 48% 51%,#756d5944 52% 53%,#cfbf9599 54% 58%,transparent 59% 60%,#e9dcad66 61% 64%,transparent 65%);filter:drop-shadow(0 6px 10px #16151b66)}
+.solar-journey .planet-section.world-uranus{
+ --terrain-light:#398b96;--terrain-base:#183b43;--tilt:75deg;
+ --surface:radial-gradient(circle at 30% 30%,#d0f1e777,transparent 55%),repeating-linear-gradient(175deg,#92ced033 0 12%,#bcdfd833 13% 16%,transparent 17% 30%),linear-gradient(120deg,#b1e2db,#65b5c1 52%,#3f879f);
+}
+.solar-journey .planet-section.world-neptune{
+ --terrain-light:#355bb1;--terrain-base:#182a50;--tilt:-12deg;
+ --surface:radial-gradient(ellipse at 55% 58%,#193b83 0 5%,#396cc1 7%,transparent 10%),radial-gradient(ellipse at 43% 74%,#9ac4ef88,transparent 4%),repeating-linear-gradient(172deg,#78a1e333 0 9%,#264c9a44 11% 15%,transparent 17% 28%),linear-gradient(135deg,#739ee1,#376acc 50%,#24449c);
+}
+@media(max-width:767px){
+ .solar-journey .planet-section::before{width:100vw;right:-38%;top:65px;opacity:.56}
+ .solar-journey .planet-section.is-current::before{opacity:.65}
+ .solar-journey .world-sun.planet-section::before{box-shadow:0 0 60px #f5a42d44}
+ .solar-journey .world-saturn.planet-section::before{width:75vw;right:-15%;top:130px}
+ .section-planet-rings{width:125vw;height:42vw;right:-40%;top:210px}
+ .solar-journey .planet-section{background:linear-gradient(90deg,#10172444,transparent),radial-gradient(ellipse at 100% 20%,var(--terrain-light),transparent 85%),var(--terrain-base)}
+}
+@media(prefers-reduced-motion:reduce){.solar-journey *,.solar-journey *::before,.solar-journey *::after{transition:none!important;animation:none!important}.motion-toggle{display:none}}
+
+/* Generated planetary environments: full-bleed, undistorted, readable. */
+.planet-scene{position:relative;isolation:isolate;background:#090a0f;display:flow-root;--scene-image:none;--scene-position:center;--scene-direction:1}
+.planet-backdrop{position:sticky;top:0;height:100vh;height:100svh;margin-bottom:-100vh;margin-bottom:-100svh;z-index:-1;pointer-events:none;overflow:hidden}
+.planet-backdrop::before{content:"";position:absolute;inset:0;background-image:var(--scene-image);background-size:cover;background-position:var(--scene-position);transform:scaleX(var(--scene-direction));}
+.planet-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#090a0f88,transparent 18%,transparent 84%,#090a0f99),linear-gradient(90deg,#090a0f22,transparent 65%)}
+.scene-mercury{--scene-image:url('assets/planets/mercury.webp');--scene-position:65% center}
+.scene-venus{--scene-image:url('assets/planets/venus.webp')}
+.scene-earth{--scene-image:url('assets/planets/earth.webp')}
+.scene-mars{--scene-image:url('assets/planets/mars.webp');--scene-position:65% center}
+.scene-jupiter{--scene-image:url('assets/planets/jupiter.webp');--scene-direction:-1}
+.scene-saturn{--scene-image:url('assets/planets/saturn.webp');--scene-position:65% center}
+.scene-uranus{--scene-image:url('assets/planets/uranus.webp');--scene-position:65% center}
+.scene-neptune{--scene-image:url('assets/planets/neptune.webp');--scene-direction:-1}
+.solar-journey .planet-scene>.planet-section{background:none;min-height:100vh;min-height:100svh;color:#f2f3f7;--muted:#c5c9d3}
+.solar-journey .planet-scene>.planet-section::before{display:none}
+.solar-journey .planet-scene .biography::before,.solar-journey .planet-scene .star-copy::before,.solar-journey .planet-scene .future>div:first-child::before,.solar-journey .planet-scene .story-prose::before{background:linear-gradient(110deg,#090a0f9c,#090a0f40);backdrop-filter:blur(5px)}
+.solar-journey .planet-scene .wisdom-translation{padding:24px;background:#090a0f9c;border:1px solid #ffffff12;border-radius:12px;backdrop-filter:blur(8px)}
+.solar-journey .planet-scene .mentor-note{background:#090a0f80;padding:20px 28px}
+.solar-journey .planet-scene .unwritten{display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+@media(max-width:767px){
+ .planet-backdrop::after{background:linear-gradient(180deg,#090a0f55,transparent 28%,#090a0f22 70%,#090a0f88)}
+ .scene-mercury{--scene-position:68% center}.scene-venus{--scene-position:62% center}.scene-earth{--scene-position:65% center}
+ .scene-jupiter{--scene-position:32% center}.scene-neptune{--scene-position:27% center}.scene-uranus{--scene-position:72% center}
+ .solar-journey .planet-scene .wisdom-translation{padding:20px}
+ .solar-journey .planet-scene .memories-heading{padding:16px;background:#090a0f80;border-radius:12px}
+}
